@@ -1,0 +1,54 @@
+<div class="container">
+	<h2 class="text-center text-info m-5 p-2">Write us message to get more info about your dream vacation</h2>
+	<form [formGroup]="info" (ngSubmit)="onSubmit()">
+	
+	<label for="yourName">Name</label>
+    <input type="text" formControlName="name" class="form-control" id="yourName">
+
+
+    <label for="email">Email</label>
+    <input type="email" formControlName="email" class="form-control" id="email">
+
+	<label for="addText">Write your message:</label>
+	<textarea class="form-control" id="addText" rows="3" formControlName="type"></textarea>
+
+	<input type="submit" class="btn btn-primary mt-2 mb-2" value="Submit" data-toggle="modal" data-target="#staticBackdrop">
+
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">Thank you</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        We have received your details and we will get back to you as soon as possible. Meanwhile you can have a look on our traveling blog.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/blog">Blog</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	</form>
+
+	<div class="row justify-content-around mt-5">
+		<div *ngFor='let offer of offers; index as offerId'>
+			<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+			  <img src={{offer.img}} class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title">{{offer.destination}}</h5>
+			    <p class="card-text">{{offer.description}}</p>
+			    <p class="card-text">{{offer.startDate}}</p>
+			    <p class="card-text">{{offer.duration}}</p>
+			    <a [routerLink]="['/travels', offerId]" class="btn btn-primary">View offer</a>
+			  </div>
+			</div>	
+		</div>
+	</div>
+
+</div>
