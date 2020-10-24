@@ -25,14 +25,13 @@
     <label for="lastName">Last name</label>
     <input type="text" formControlName="lastName" class="form-control" id="lastName">
 
-
     <label for="email">Email</label>
     <input type="email" formControlName="email" class="form-control" id="email">
 
 	<label for="number">Number</label>
-    <input type="text" formControlName="number" class="form-control mb-5" id="number">
+    <input type="text" formControlName="number" class="form-control" id="number">
 
-    <input type="submit" class="btn btn-primary btn-lg btn-block mb-2" value="Pay" data-toggle="modal" data-target="#staticBackdrop">
+    <input *ngIf="payment.valid" type="submit" class="btn btn-primary btn-lg btn-block mt-5 mb-2" value="Pay" data-toggle="modal" data-target="#staticBackdrop">
 
 	<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog">

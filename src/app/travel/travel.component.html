@@ -4,17 +4,26 @@
 	
 	<label for="yourName">Name</label>
     <input type="text" formControlName="name" class="form-control" id="yourName">
+    <div *ngIf="info.get('name').invalid && sendIt" class="alert alert-danger">
+		Insert valid name of min 4 characters 
+	</div>
 
 
     <label for="email">Email</label>
     <input type="email" formControlName="email" class="form-control" id="email">
+    <div *ngIf="info.get('email').invalid && sendIt" class="alert alert-danger">
+		Insert valid email 
+	</div>
 
 	<label for="addText">Write your message:</label>
 	<textarea class="form-control" id="addText" rows="3" formControlName="type"></textarea>
+	<div *ngIf="info.get('type').invalid && sendIt" class="alert alert-danger">
+		Please write some message
+	</div>
 
-	<input type="submit" class="btn btn-primary mt-2 mb-2" value="Submit" data-toggle="modal" data-target="#staticBackdrop">
+	<input type="submit" class="btn btn-primary mt-2 mb-2" value="Send" data-toggle="modal" data-target="#staticBackdrop">
 
-	<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div *ngIf="info.valid" class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -24,11 +33,10 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        We have received your details and we will get back to you as soon as possible. Meanwhile you can have a look on our traveling blog.
+	        We have received your details and we will get back to you as soon as possible.
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/blog">Blog</button>
 	      </div>
 	    </div>
 	  </div>

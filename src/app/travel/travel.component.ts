@@ -9,12 +9,14 @@ import { offers } from '../offers';
 })
 export class TravelComponent implements OnInit {
 
+  sendIt: boolean = false;
+
 	offers = offers;
 
 	info = new FormGroup ({
-		name: new FormControl(''),
-		email: new FormControl(''),
-		type: new FormControl (''),
+		name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern('[a-zA-Z ]*')]),
+		email: new FormControl('', [Validators.required, Validators.email]),
+		type: new FormControl ('', [Validators.required, Validators.minLength(10)]),
 
 	})
 
@@ -24,9 +26,13 @@ export class TravelComponent implements OnInit {
   }
 
   onSubmit() {
+    this.sendIt = true;
+    if(this.info.valid) {
   	var x = this.info.value
   	console.log(x)
   	this.info.reset()
+    this.sendIt = false;
+    }
   }
 
 }

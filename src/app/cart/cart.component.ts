@@ -11,14 +11,16 @@ export class CartComponent implements OnInit {
 	items;
 
 	payment = new FormGroup ({
-		firstName: new FormControl(''),
-		lastName: new FormControl(''),
-		email: new FormControl(''),
-		number: new FormControl (''),
+		firstName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z ]*')]),
+		lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z ]*')]),
+		email: new FormControl('', [Validators.required, Validators.email]),
+		number: new FormControl ('', [Validators.required, Validators.minLength(8), Validators.pattern('[0-9]*')]),
 
 	})
 
   constructor(private cartService: CartService) { }
+
+  sendForm: boolean = false
 
   ngOnInit(): void {
   	this.items = this.cartService.getItems();
@@ -45,9 +47,13 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit() {
+    this.sendForm = true;
+    if(this.payment.valid) {
   	var y = this.payment.value
   	console.log(y)
   	this.payment.reset()
+    this.sendForm = false
+    }
   }
 
 }
